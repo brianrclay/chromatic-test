@@ -1,0 +1,38 @@
+import { Meta, Story, Preview, Props } from '@storybook/addon-docs/blocks'
+import { Button, ButtonGroup } from './index'
+import withDesignTokens from 'addons/tokens/index.js'
+import { PeerDependencies } from 'addons/packages/index.js'
+import { FlexContainer } from 'addons/utils/blocks.js'
+import changelog from '../CHANGELOG.md'
+import packageJson from '../package.json'
+
+<Meta
+  component={ButtonGroup}
+  decorators={[withDesignTokens]}
+  parameters={{ changelog }}
+  title="Buttons/Button Group"
+/>
+
+# ButtonGroup
+### Installation
+
+`npm install @kyper/button --save`
+
+<PeerDependencies json={packageJson} />
+
+A simple wrapper component for keeping consistent spacing with multiple inline `Button` components.
+
+<Preview>
+  <Story name="Button Group">
+      <div style={{padding: '72px'}}>
+        <ButtonGroup>
+          <Button variant="transparent">Transparent</Button>
+          <Button>Neutral</Button>
+          <Button variant="primary">Primary</Button>
+        </ButtonGroup>
+      </div>
+  </Story>
+</Preview>
+
+### Props
+<Props of={ButtonGroup} />

@@ -1,0 +1,50 @@
+import { Meta, Story, Preview, Props } from '@storybook/addon-docs/blocks'
+import { Avatar } from './Avatar'
+import withDesignTokens from 'addons/tokens/index.js'
+import { PeerDependencies } from 'addons/packages/index.js'
+import { FlexContainer } from 'addons/utils/blocks.js'
+import changelog from '../CHANGELOG.md'
+import packageJson from '../package.json'
+import { User, Eye } from '@kyper/icon'
+
+<Meta
+  component={Avatar}
+  decorators={[withDesignTokens]}
+  parameters={{ changelog }}
+  title="Avatar"
+/>
+
+# Avatar
+### Installation
+
+`npm install @kyper/avatar --save`
+
+<PeerDependencies json={packageJson} />
+
+<Preview>
+  <Story name="Basic">
+    <FlexContainer direction="column">
+      <FlexContainer padding={16}>
+        <Avatar size={16}>B</Avatar>
+        <Avatar
+          src="https://kyper-html.netlify.app/assets/avatars/female.png"
+          size={24}
+          alt="Your profile"
+        />
+        <Avatar
+          src="https://kyper-html.netlify.app/assets/avatars/femal.png"
+          size={24}
+          alt="Your profile"
+        />
+        <Avatar size={32}>
+          <Eye />
+        </Avatar>
+        <Avatar size={44} />
+      </FlexContainer>
+    </FlexContainer>
+  </Story>
+</Preview>
+
+### Props
+<Props of={Avatar} />
+

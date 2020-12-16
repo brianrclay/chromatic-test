@@ -1,0 +1,30 @@
+import * as d3 from "d3"
+import { Meta, Props } from '@storybook/addon-docs/blocks'
+import withDesignTokens from 'addons/tokens/index.js'
+import { PeerDependencies } from 'addons/packages/index.js'
+import { FlexContainer } from 'addons/utils/blocks.js'
+
+import { Graph } from '../lib/index'
+import changelog from '../CHANGELOG.md'
+import packageJson from '../package.json'
+
+<Meta
+  component={Graph}
+  decorators={[withDesignTokens]}
+  parameters={{ changelog }}
+  title="Graphs|Graph"
+/>
+
+# Graph
+### Installation
+
+`npm install @kyper/graphs --save`
+
+<PeerDependencies json={packageJson} />
+
+### Overview
+All of the main charting elements are wrapped in the `Graph` component. Each of these components should pass the `width` and `height` along as well as making all remaining props accessible through the `svgProps` prop. Any additional props not defined below will be passed to the native `svg` element.
+
+### Props
+<Props of={Graph} />
+

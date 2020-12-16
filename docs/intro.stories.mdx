@@ -1,0 +1,22 @@
+<Meta title="Intro|" />
+
+# Kyper React
+
+The React components of the [Kyper Design System](https://zeroheight.com/77957bdb7/p/199949-kyper).
+
+## Installation Notes
+
+The Kyper React components are all individually versioned and published on the npm registry under the `@kyper/` scope.
+
+To reduce bundle size and package conflicts, the components are not compiled through any tools such as babel or webpack but published as ES6. This will require you as the consumer to transpile your desired components and include any defined dependencies.
+
+For example, To use the [Button](/?path=/docs/button--button) component you might be required to install the following packages.
+
+```
+npm install react react-dom @kyper/tokenprovider @kyper/button --save
+```
+
+### Peer Dependencies
+
+The `Docs` page for every component will automatically parse and display all the `peerDependencies` that are provided in the `package.json`. __All these packages are required for the component to function properly__.
+

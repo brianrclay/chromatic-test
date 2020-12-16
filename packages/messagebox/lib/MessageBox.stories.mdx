@@ -1,0 +1,141 @@
+import { Meta, Story, Preview, Props } from '@storybook/addon-docs/blocks'
+import { useState } from 'react'
+import { Button, ButtonGroup } from '@kyper/button'
+import { Text } from '@kyper/text'
+import { TextInput } from '@kyper/input'
+import { useTokens } from '@kyper/tokenprovider'
+import { MessageBox } from './MessageBox'
+import withDesignTokens from 'addons/tokens/index.js'
+import { PeerDependencies } from 'addons/packages/index.js'
+import { FlexContainer } from 'addons/utils/blocks.js'
+import packageJson from '../package.json'
+import changelog from '../CHANGELOG.md'
+
+<Meta
+  component={MessageBox}
+  decorators={[withDesignTokens]}
+  parameters={{ changelog }}
+  title="MessageBox"
+/>
+
+# MessageBox
+### Installation
+
+`npm install @kyper/messagebox --save`
+
+<PeerDependencies json={packageJson} />
+
+<Preview>
+  <Story name="Variations">
+    {() => {
+        const tokens = useTokens()
+        return (
+          <FlexContainer direction="column">
+            <MessageBox style={{marginBottom:tokens.Spacing.Medium}}>
+              <Text as="ParagraphSmall" tag="p">
+                The message box defaults to the `help` variant
+              </Text>
+            </MessageBox>
+            <MessageBox style={{marginBottom:tokens.Spacing.Medium}} variant="error">
+              <Text as="ParagraphSmall" tag="p">
+                The `error` variant is used for negative messaging
+              </Text>
+            </MessageBox>
+            <MessageBox style={{marginBottom:tokens.Spacing.Medium}} variant="success">
+              <Text as="ParagraphSmall" tag="p">
+                The `success` variant is used when completing a successful action
+              </Text>
+            </MessageBox>
+          </FlexContainer>
+        )
+      }}
+  </Story>
+</Preview>
+
+### Props
+
+<Props of={MessageBox} />
+
+<Preview>
+  <Story name="With Title">
+    <FlexContainer>
+      <MessageBox title="This is a message box title" variant="success">
+        <Text as="ParagraphSmall" tag="p">
+          Message box with a title
+        </Text>
+      </MessageBox>
+    </FlexContainer>
+  </Story>
+</Preview>
+
+<Preview>
+  <Story name="With Close Button">
+    <FlexContainer>
+      <MessageBox onClose={() => alert('hello')} title="Close button message box">
+        <Text as="ParagraphSmall" tag="p">
+          Message box with a close button. By passing a function to the `onClose` prop a button will appear that runs your function when clicked on.
+        </Text>
+      </MessageBox>
+    </FlexContainer>
+  </Story>
+</Preview>
+
+<Preview>
+  <Story name="With Action Buttons">
+    {() => {
+        const tokens = useTokens()
+        return (
+          <FlexContainer>
+            <MessageBox onClose={() => alert('hello')} title="Error message box with action buttons" variant="error">
+              <Text as="ParagraphSmall" tag="p">
+                Message box with action buttons. You supply an array of objects with `title` and `onClick` properties with an optional `variant` property for the tertiary button style.
+              </Text>
+              <div style={{display: 'flex', marginTop: tokens.Spacing.Small}}>
+                <Button
+                    onClick={() => alert('action 1')}
+                    size="small"
+                    style={{ marginRight: tokens.Spacing.Large }}
+                    variant='link'
+                  >
+                    Link 1
+                  </Button>
+                  <Button
+                    onClick={() => alert('action 2')}
+                    size="small"
+                    style={{ marginRight: tokens.Spacing.Large }}
+                    variant='link-tertiary'
+                  >
+                    Link 2
+                  </Button>
+              </div>
+            </MessageBox>
+          </FlexContainer>
+        )
+      }}
+  </Story>
+</Preview>
+
+<Preview>
+  <Story name="Form Example">
+      {() => {
+        const tokens = useTokens()
+        const [isError, setIsError] = useState(false)
+        return (
+          <FlexContainer direction="column" containerStyles={{width:"50%"}}>
+            <Text tag="p">Press submit to see the error message</Text>
+            <form onSubmit={(e) => { e.preventDefault(); setIsError(true)}} style={{ marginBottom: tokens.Spacing.Medium }}>
+              <TextInput label="First name" name="first_name" onChange={e => console.log(e.target.value)} style={{ marginBottom:tokens.Spacing.Medium }} />
+              <TextInput label="Last name" name="last_name" onChange={e => console.log(e.target.value)} style={{ marginBottom:tokens.Spacing.Medium }} />
+              <TextInput label="Email" name="email" onChange={e => console.log(e.target.value)} style={{ marginBottom:tokens.Spacing.Medium }} type="email" />
+              <Button type="submit" variant="primary">Submit</Button>
+            </form>
+            {isError && <MessageBox onClose={() => setIsError(false)} style={{ marginBottom:tokens.Spacing.Medium }} variant="error">
+              <Text as="ParagraphSmall" tag="p">
+                An error happened when submitting the form.
+              </Text>
+            </MessageBox>}
+          </FlexContainer>
+        )
+      }}
+  </Story>
+</Preview>

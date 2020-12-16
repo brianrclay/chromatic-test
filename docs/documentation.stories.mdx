@@ -1,0 +1,78 @@
+<Meta title="Intro|Documentation" />
+
+## Creating Documentation
+
+Kyper React uses [Storybook](https://storybook.js.org/) along with the Docs addon for local development and documentation. Documentation and Stories use the [MDX](https://github.com/storybookjs/storybook/blob/next/addons/docs/docs/mdx.md) format.
+
+### Core Components
+
+Let's begin with the core concepts of the documentation.
+
+##### MetaTag
+
+```
+import { Meta } from '@storybook/addon-docs/blocks
+
+<Meta
+  component={Button}
+  decorators={[withDesignTokens]}
+  title="Button"
+/>
+```
+
+The `MetaTag` requires a `component` and a `title`. The `title` should be unique across all of the documentation pages. The `component` should be the component you wish to document.
+
+The `decorators` prop allows us to wrap/execute code for the entire documentation page. In this instance, we are providing the design tokens and context to all the components.
+
+##### PeerDependencies
+
+```
+import { PeerDependencies } from 'addons/packages/index.js'
+import packageJson from '../package.json'
+
+<PeerDependencies json={packageJson} />
+```
+
+With the emphasis on dependencies not being installed, it's necessary to have a visual reminder of what is required to be installed for the components to function. Importing the package.json file and passing it to the `PeerDependencies` component will render those requirements for you.
+
+##### Story
+
+```
+import { Story } from '@storybook/addon-docs/blocks
+
+<Story name="Button">
+  <FlexContainer>
+    <Button variant="primary">
+      Primary
+    </Button>
+  </FlexContainer>
+</Story>
+```
+
+Each `Story` component should represent a single visual state of a component. However, it's common to also group multiple implementations of, say, a button into a single story. Every `Story` component defined will generate a new linkable section displayed in the navigation.
+
+##### Preview
+```
+import { Preview } from '@storybook/addon-docs/blocks'
+
+<Preview>
+  <Story>
+    ...
+  </Story>
+</Preview>
+```
+
+If you'd like to display the JSX that was used to render your story, wrap it in the `Preview` component.
+
+##### Props
+```
+import { Props } from '@storybook/addon-docs/blocks'
+
+<Props of={Button} />
+```
+
+If you desire to display the props for a component, pass it to the `Props` component. This will display everything it can parse out of the defined `propTypes`. For more prop documentation options, you can explore [react-docgen](https://github.com/reactjs/react-docgen)
+
+
+
+

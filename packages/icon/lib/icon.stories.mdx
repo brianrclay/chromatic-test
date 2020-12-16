@@ -1,0 +1,48 @@
+import { Meta, Story, Preview, Props } from '@storybook/addon-docs/blocks'
+import { SvgIcon } from './icons/base'
+import withDesignTokens from 'addons/tokens/index'
+import { PeerDependencies } from 'addons/packages/index'
+import { FlexContainer } from 'addons/utils/blocks'
+import { IconContainer } from 'addons/utils/icons'
+import changelog from '../CHANGELOG.md'
+import packageJson from '../package.json'
+
+import { Accounts } from './icon'
+import * as Icons from './icon'
+
+<Meta
+  component={Accounts}
+  decorators={[withDesignTokens]}
+  parameters={{ changelog }}
+  title="Icon"
+/>
+
+# Icon
+### Installation
+
+`npm install @kyper/icon --save`
+
+<PeerDependencies json={packageJson} />
+
+<Preview>
+  <Story name="Basic">
+    <FlexContainer padding={16}>
+      <Accounts size={16} />
+      <Accounts size={32} />
+      <Accounts size={64} />
+    </FlexContainer>
+  </Story>
+</Preview>
+
+### Props
+<Props of={SvgIcon} />
+
+<Preview>
+  <Story name="All Icons">
+    <IconContainer icons={Icons} groupSize={5} />
+  </Story>
+</Preview>
+
+
+
+

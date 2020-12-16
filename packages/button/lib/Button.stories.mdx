@@ -1,0 +1,117 @@
+import { Meta, Story, Preview, Props } from '@storybook/addon-docs/blocks'
+import { Button, ButtonGroup } from './index'
+import withDesignTokens from 'addons/tokens/index.js'
+import { PeerDependencies } from 'addons/packages/index.js'
+import { FlexContainer } from 'addons/utils/blocks.js'
+import packageJson from '../package.json'
+import changelog from '../CHANGELOG.md'
+
+<Meta
+  component={Button}
+  decorators={[withDesignTokens]}
+  parameters={{ changelog }}
+  title="Buttons/Button"
+/>
+
+# Button
+### Installation
+
+`npm install @kyper/button --save`
+
+<PeerDependencies json={packageJson} />
+
+<Preview>
+  <Story name="Button">
+    <FlexContainer>
+      <Button variant="primary">
+        Primary
+      </Button>
+    </FlexContainer>
+  </Story>
+</Preview>
+
+<Props of={Button} />
+
+<Preview>
+  <Story name="Primary">
+    <FlexContainer padding={16}>
+      <Button variant="primary">
+        Primary
+      </Button>
+      <Button disabled variant="primary">
+        Primary Disabled
+      </Button>
+    </FlexContainer>
+  </Story>
+</Preview>
+
+<Preview>
+  <Story name="Neutral">
+    <FlexContainer padding={16}>
+      <Button variant="neutral">
+        Neutral
+      </Button>
+    </FlexContainer>
+  </Story>
+</Preview>
+
+<Preview>
+  <Story name="Transparent">
+    <FlexContainer padding={16}>
+      <Button variant="transparent">
+        Transparent
+      </Button>
+    </FlexContainer>
+  </Story>
+</Preview>
+
+<Preview>
+  <Story name="Transparent Tertiary">
+    <FlexContainer padding={16}>
+      <Button variant="transparent-tertiary">
+        Transparent Tertiary
+      </Button>
+    </FlexContainer>
+  </Story>
+</Preview>
+
+<Preview>
+  <Story name="Link">
+    <FlexContainer padding={16}>
+      <Button variant="link">
+        Link
+      </Button>
+    </FlexContainer>
+  </Story>
+</Preview>
+
+<Preview>
+  <Story name="Link Tertiary">
+    <FlexContainer padding={16}>
+      <Button variant="link-tertiary">
+        Link Tertiary
+      </Button>
+    </FlexContainer>
+  </Story>
+</Preview>
+
+<Preview>
+  <Story name="Link Destructive">
+    <FlexContainer padding={16}>
+      <Button variant="link-destructive">
+        Link Destructive
+      </Button>
+    </FlexContainer>
+  </Story>
+</Preview>
+
+<Preview>
+  <Story name="Destructive">
+    <FlexContainer padding={16}>
+      <Button variant="destructive">
+        Destructive
+      </Button>
+    </FlexContainer>
+  </Story>
+</Preview>
+

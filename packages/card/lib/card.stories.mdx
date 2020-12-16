@@ -1,0 +1,64 @@
+import { Meta, Story, Preview, Props } from '@storybook/addon-docs/blocks'
+import withDesignTokens from 'addons/tokens/index'
+import { PeerDependencies } from 'addons/packages/index'
+import { FlexContainer } from 'addons/utils/blocks'
+import packageJson from '../package.json'
+import changelog from '../CHANGELOG.md'
+
+import { Card } from './card'
+
+<Meta
+  component={Card}
+  decorators={[withDesignTokens]}
+  parameters={{ changelog }}
+  title="Card"
+/>
+
+# Card
+### Installation
+
+`npm install @kyper/card --save`
+
+<PeerDependencies json={packageJson} />
+
+<Preview>
+  <Story name="Card">
+    <FlexContainer padding={16}>
+      <Card>
+        <h1>Card Contents</h1>
+      </Card>
+    </FlexContainer>
+  </Story>
+</Preview>
+
+### Props
+<Props of={Card} />
+
+<Preview>
+  <Story name="Card Padding">
+    <FlexContainer padding={16}>
+      <Card padding="large">
+        <h1>Padding Large</h1>
+      </Card>
+      <Card padding="small">
+        <h1>Padding Small</h1>
+      </Card>
+      <Card padding="none">
+        <h1>Padding None</h1>
+      </Card>
+    </FlexContainer>
+  </Story>
+</Preview>
+
+<Preview>
+  <Story name="Card Border Radius">
+    <FlexContainer padding={16}>
+      <Card borderRadius="card">
+        <h1>Border Radius Default</h1>
+      </Card>
+      <Card borderRadius="none">
+        <h1>Border Radius None</h1>
+      </Card>
+    </FlexContainer>
+  </Story>
+</Preview>

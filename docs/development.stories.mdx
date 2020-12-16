@@ -1,0 +1,97 @@
+<Meta title="Intro|Development" />
+
+## Local Development
+
+Kyper React uses [Storybook](https://storybook.js.org/) along with the Docs addon for local development and documentation. Documentation and Stories use the [MDX](https://github.com/storybookjs/storybook/blob/next/addons/docs/docs/mdx.md) format.
+
+---
+
+#### Getting start
+
+To get started with the development server with hot reloading:
+
+```
+git clone https://gitlab.mx.com/mx/kyper-react
+
+npm install
+
+npm run bootstrap
+
+npm run dev
+```
+
+---
+
+#### Building a new component
+
+While [Lerna](https://github.com/lerna/lerna) is installed as a devDependency, it's preferred to have it available globally.
+
+```
+npm install -g lerna
+```
+
+If you'd rather not install it globally, you can proxy all the example lerna commands below with the following:
+
+```
+npm run lerna -- additional options
+```
+
+In the root directory of the repository, begin by using lerna to generate your new component.
+
+```
+lerna create package-name
+```
+
+Follow the prompts making sure to set the name of your component prefixed with the scoped `@kyper/` package-name.
+
+Install any `peerDependencies` easily with lerna from the root directory.
+
+```
+lerna add react packages/package-name --peer
+lerna add react-dom packages/package-name --peer
+```
+
+_**Note**_: This can all be done manually in the directory of your new component using normal npm. Make sure to run `lerna bootstrap --hoist` from the root directory after you're done. This allows lerna to manage a single set of node_modules.
+
+Create a "stories" page looking at other components for references. You should now be able to do your local development with testing directly in Storybook.
+
+---
+
+#### Comparing Dependencies
+
+So we don't get too out of sync, we utilize the `syncpack` tool to easily compare our dev and peer dependencies to the other packages in the repo.
+
+```
+npm run syncpack -- list-mismatches
+```
+
+There could be multiple reasons why packages will diverge from their shared dependencies. Please use your best judgment and keep an eye on it.
+
+
+#### NPM Link
+
+If you need to test your component in another repository before publishing, you can use `npm link`. Here is an example workflow:
+
+```
+cd ~/kyper-react/packages/button/
+
+npm link
+
+cd ~/raja/
+
+npm link @kyper/button
+```
+
+_Make sure you install the ***Peer Dependencies*** or link them as well_!!!
+
+---
+
+#### Resources
+
+[Lerna](https://github.com/lerna/lerna)
+
+[Storybook](https://storybook.js.org/)
+
+[Docs](https://github.com/storybookjs/storybook/tree/master/addons/docs)
+
+[MDX](https://github.com/storybookjs/storybook/blob/next/addons/docs/docs/mdx.md)

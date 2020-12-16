@@ -1,0 +1,42 @@
+<Meta title="Intro|Publishing" />
+
+## Publishing
+
+After your package and documentation updates have been approved and merged into `master`, you can run through publishing your changes.
+
+Kyper uses the [Lerna](https://github.com/lerna/lerna) tool to help manage each component as an individual package. For a comprehensive list of the commands available, please read the [docs](https://github.com/lerna/lerna). Make sure you authenticated with NPM via the console and you have access to the @kyper group.
+
+---
+
+Run all the unit tests in the root directory.
+
+```
+npm run test
+```
+
+Double check that your dependencies are in line or as expected with the rest of the packages.
+
+```
+npm run syncpack -- list-mismatches
+```
+
+Verify your changes to the package(s) that have changed since the last published release.
+
+```
+lerna diff
+```
+
+Update the package version(s) following [semvar](https://semver.org/). _View the docs for more options and flexibility_
+
+```
+lerna version major | minor | patch
+```
+
+Publish your changes to NPM.
+
+```
+lerna publish
+```
+
+
+

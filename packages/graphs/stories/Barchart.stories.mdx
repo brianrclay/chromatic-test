@@ -1,0 +1,102 @@
+import * as d3 from "d3"
+import { useState, useEffect } from 'react'
+import { Meta, Story, Preview, Props } from '@storybook/addon-docs/blocks'
+import withDesignTokens from 'addons/tokens/index.js'
+import { PeerDependencies } from 'addons/packages/index.js'
+import { FlexContainer } from 'addons/utils/blocks.js'
+
+import { basicBarData, groupedBarData, mixedValues } from './data'
+import { BarChart } from '../lib/barchart/BarChart'
+import changelog from '../CHANGELOG.md'
+import packageJson from '../package.json'
+
+<Meta
+  component={BarChart}
+  decorators={[withDesignTokens]}
+  parameters={{ changelog }}
+  title="Graphs|BarChart"
+/ >
+
+# BarChart
+### Installation
+
+`npm install @kyper/graphs --save`
+
+<PeerDependencies json={packageJson} />
+
+<Preview>
+  <Story name="Basic">
+    <BarChart
+      data={basicBarData}
+      height={300}
+      labelFormatter={val => d3.format('$.3s')(val)}
+      svgProps={{ style: { backgroundColor: 'white' }}}
+      threshold={300}
+      width={500}
+      yFormatter={val => d3.format('$.2s')(val)}
+    />
+  </Story>
+</Preview>
+
+<Preview>
+  <Story name="Grouped">
+    <BarChart
+      data={groupedBarData}
+      height={300}
+      labelFormatter={val => d3.format('$.2s')(val)}
+      svgProps={{ style: { backgroundColor: 'white' }}}
+      threshold={300}
+      width={500}
+      yDomain={[0, 7000]}
+      yFormatter={val => d3.format('$.2s')(val)}
+    />
+  </Story>
+</Preview>
+
+<Preview>
+  <Story name="Grouped Custom Colors">
+    <BarChart
+      colorRange={['#60A9FF', '#C8BAEE']}
+      data={groupedBarData}
+      height={300}
+      labelFormatter={val => d3.format('$.2s')(val)}
+      svgProps={{ style: { backgroundColor: 'white' }}}
+      width={500}
+      yFormatter={val => d3.format('$.2s')(val)}
+    />
+  </Story>
+</Preview>
+
+<Preview>
+  <Story name="Test Name">
+    <BarChart
+      data={mixedValues}
+      height={300}
+      labelFormatter={val => d3.format('$.3s')(val)}
+      showBarLabelBackground={false}
+      svgProps={{ style: { backgroundColor: 'white' }}}
+      width={500}
+      yFormatter={val => d3.format('$.2s')(val)}
+    />
+  </Story>
+</Preview>
+
+
+### Overview
+A basic BarChart. 
+
+### Props
+<Props of={BarChart} />
+
+### Data options
+
+Sometimes it's necessary to have options available to each record in your data set. Here are the options currently available.
+
+**ariaLabel** - Used to assist with screen readers in making sense of the data.
+
+**disableBarLabel** - Removes the label from being displayed above the bar.
+
+**enableEmphasis** - Used to bring attention to one of the data points. 
+
+**subLabel** - Required when passing in grouped data.
+

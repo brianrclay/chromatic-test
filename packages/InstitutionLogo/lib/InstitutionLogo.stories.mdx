@@ -1,0 +1,71 @@
+import { Meta, Story, Preview, Props } from '@storybook/addon-docs/blocks'
+import { InstitutionLogo } from './InstitutionLogo.js'
+import withDesignTokens from 'addons/tokens/index.js'
+import { PeerDependencies } from 'addons/packages/index.js'
+import { FlexContainer } from 'addons/utils/blocks.js'
+import packageJson from '../package.json'
+import changelog from '../CHANGELOG.md'
+
+<Meta
+  component={InstitutionLogo}
+  decorators={[withDesignTokens]}
+  parameters={{ changelog }}
+  title="InstitutionLogo"
+/>
+
+# InstitutionLogo
+### Installation
+
+`npm install @kyper/institutionlogo --save`
+
+<PeerDependencies json={packageJson} />
+
+<Preview>
+  <Story name="Default No Props with Manual Institution Logo">
+    <FlexContainer>
+      <InstitutionLogo />
+    </FlexContainer>
+  </Story>
+</Preview>
+
+<Props of={InstitutionLogo} />
+
+<Preview>
+  <Story name="Failed to load logo">
+    <FlexContainer>
+      <InstitutionLogo institutionGuid="INS-bad-guid" size={50} />
+    </FlexContainer>
+  </Story>
+</Preview>
+
+<Preview>
+  <Story name="Custom Alt Text Logo">
+    <FlexContainer>
+      <InstitutionLogo alt="MX Logo" institutionGuid="INS-3aeb38da-26e4-3818-e0fa-673315ab7754" size={50} />
+    </FlexContainer>
+  </Story>
+</Preview>
+
+<Preview>
+  <Story name="Custom Source">
+    <FlexContainer>
+      <InstitutionLogo size={50} src="http://www.mx.com/assets/images/mx-logo-grey.svg" />
+    </FlexContainer>
+  </Story>
+</Preview>
+
+<Preview>
+  <Story name="Custom onError">
+    <FlexContainer>
+      <InstitutionLogo onError={e => e.target.src = "http://content.moneydesktop.com/storage/MD_Assets/browser-icons/chrome-icon.png"} size={50} />
+    </FlexContainer>
+  </Story>
+</Preview>
+
+<Preview>
+  <Story name="Custom style">
+    <FlexContainer>
+      <InstitutionLogo size={50} style={{ border: '1px solid red' }} />
+    </FlexContainer>
+  </Story>
+</Preview>
